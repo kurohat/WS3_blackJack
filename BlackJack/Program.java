@@ -10,10 +10,10 @@ public class Program
   public static void main(String[] a_args)
   {
   
-    Game g = new Game();
-    IView v = new SimpleView(); 
-    PlayGame ctrl = new PlayGame();
+    Game game = new Game();
+    IView view = new SimpleView(); 
+    PlayGame ctrl = new PlayGame(game , view);
     
-    while (ctrl.Play(g, v));
+    while (ctrl.Play());
   }
 }
