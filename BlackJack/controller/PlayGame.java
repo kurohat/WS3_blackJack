@@ -2,8 +2,9 @@ package BlackJack.controller;
 
 import BlackJack.view.IView;
 import BlackJack.model.Game;
+import BlackJack.model.Observer;
 
-public class PlayGame {
+public class PlayGame extends Observer{
 
   public boolean Play(Game a_game, IView a_view) {
     a_view.DisplayWelcomeMessage();
@@ -33,4 +34,10 @@ public class PlayGame {
 
     return input != 'q';
   }
+
+@Override
+public void update() {
+	// TODO Auto-generated method stub
+	
+}
 }
