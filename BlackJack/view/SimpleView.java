@@ -63,4 +63,25 @@ public class SimpleView implements IView
             }
             
         }
+
+		@Override
+		public boolean Play(int input) {			
+			return input == 'p';
+		}
+
+		@Override
+		public boolean Hit(int input) {
+			return input == 'h';
+
+		}
+
+		@Override
+		public boolean Stand(int input) {
+			return input == 's';
+		}
+
+		@Override
+		public boolean Quit(int input) {
+			 return input == 'q';
+		}
     }
