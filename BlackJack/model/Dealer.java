@@ -32,6 +32,17 @@ public class Dealer extends Player {
 		}
 		return false;
 	}
+	
+	public boolean Stand() {
+		if (m_deck != null) {
+			ShowHand();
+			while(m_hitRule.DoHit(this)) {
+				DealCard(this);
+			}
+			return true;
+		}
+		return false;
+	}
 
 	public boolean IsDealerWinner(Player a_player) {
 		if (a_player.CalcScore() > g_maxScore) {
