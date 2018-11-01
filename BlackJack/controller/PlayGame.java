@@ -2,9 +2,9 @@ package BlackJack.controller;
 
 import BlackJack.view.IView;
 import BlackJack.model.Game;
-import BlackJack.model.Observer;
+import BlackJack.model.IObserver;
 
-public class PlayGame extends Observer {
+public class PlayGame implements IObserver {
 
 	private Game a_game;
 	private IView a_view;
@@ -12,11 +12,11 @@ public class PlayGame extends Observer {
 	public PlayGame(Game a_game, IView a_view) {
 		this.a_game = a_game;
 		this.a_view = a_view;
+		register(this);
 	}
 
 	public boolean Play() {
 		a_view.DisplayWelcomeMessage();
-
 		a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
 		a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
 
@@ -33,16 +33,31 @@ public class PlayGame extends Observer {
 		} else if (a_view.Stand(input)) {
 			a_game.Stand();
 		} else if (a_view.Quit(input)) {
-			return false;	// exit the the loop
+			return false; // exit the the loop
 		}
 		return true; // return true if player didn't press 'q'
 	}
 
 	@Override
-	public void update() {
-		/*
-		 * TODO Auto-generated method stub need to improve
-		 */
-
+	public void update(int a_delay) {
+		
+		try {
+			System.out.println("Dealing the card...\n\n");
+			a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
+			Thread.sleep(a_delay);
+			System.out.println("Dealing the card...\n\n");
+			a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
+			Thread.sleep(a_delay);
+		} catch (InterruptedException e) {
+			System.out.println("BOOM it crash");
+			e.printStackTrace();
+			System.exit(-1);
+		}
+		
 	}
+	
+	public void register(IObserver a_observer) {
+		this.a_game.register(a_observer);
+	}
+
 }
