@@ -2,9 +2,8 @@ package BlackJack.controller;
 
 import BlackJack.view.IView;
 import BlackJack.model.Game;
-import BlackJack.model.Observer;
 
-public class PlayGame extends Observer {
+public class PlayGame {
 
 	private Game a_game;
 	private IView a_view;
@@ -33,16 +32,9 @@ public class PlayGame extends Observer {
 		} else if (a_view.Stand(input)) {
 			a_game.Stand();
 		} else if (a_view.Quit(input)) {
-			return false;	// exit the the loop
+			return false; // exit the the loop
 		}
 		return true; // return true if player didn't press 'q'
 	}
 
-	@Override
-	public void update() {
-		/*
-		 * TODO Auto-generated method stub need to improve
-		 */
-
-	}
 }
