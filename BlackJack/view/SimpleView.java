@@ -1,5 +1,8 @@
 package BlackJack.view;
 
+import java.util.EnumSet;
+import java.util.Scanner;
+
 public class SimpleView implements IView {
 
 	public void DisplayWelcomeMessage() {
@@ -8,20 +11,18 @@ public class SimpleView implements IView {
 		}
 		;
 		System.out.println("LET PLAY BLACK JACK, GO HARD OR GO HOME YOOOO!!");
-		System.out.println("Type 'p' to Play, 'h' to Hit, 's' to Stand or 'q' to Quit\n");
 	}
 
-	public int GetInput() {
-		try {
-			int c = System.in.read();
-			while (c == '\r' || c == '\n') {
-				c = System.in.read();
-			}
-			return c;
-		} catch (java.io.IOException e) {
-			System.out.println("" + e);
-			return 0;
+	public Action GetInput() {
+		for (Action choices : EnumSet.allOf(Action.class)) {
+			System.out.print(choices.ordinal() + ": " + choices + " | ");
 		}
+
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("");
+
+		int choice = scanner.nextInt();
+		return Action.values()[choice];
 	}
 
 	public void DisplayCard(BlackJack.model.Card a_card) {
@@ -54,10 +55,9 @@ public class SimpleView implements IView {
 		}
 
 	}
-	
+
 	public void DisplayDealingCard() {
-		System.out.println("-----------------------------------"
-				+ "\nDealing the card...\n\n");
+		System.out.println("-----------------------------------" + "\nDealing the card...\n\n");
 	}
 
 	@Override

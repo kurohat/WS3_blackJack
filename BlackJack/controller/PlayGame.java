@@ -1,6 +1,6 @@
 package BlackJack.controller;
 
-import BlackJack.view.IView;
+import BlackJack.view.*;
 import BlackJack.model.Game;
 import BlackJack.model.IObserver;
 
@@ -24,18 +24,22 @@ public class PlayGame implements IObserver {
 			m_view.DisplayGameOver(m_game.IsDealerWinner());
 		}
 
-		int input = m_view.GetInput();
+		Action input = m_view.GetInput();
 
-		if (m_view.Play(input)) {
+		switch (input) {
+		case Play:
 			m_game.NewGame();
-		} else if (m_view.Hit(input)) {
+			break;
+		case Hit:
 			m_game.Hit();
-		} else if (m_view.Stand(input)) {
+			break;
+		case Stand:
 			m_game.Stand();
-		} else if (m_view.Quit(input)) {
-			return false; // exit the the loop
+			break;
+		case Quit:
+			return false;
 		}
-		return true; // return true if player didn't press 'q'
+		return true;
 	}
 
 	@Override
