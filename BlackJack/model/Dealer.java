@@ -2,13 +2,12 @@ package BlackJack.model;
 
 import BlackJack.model.rules.*;
 
-public class Dealer extends Player implements IObserver {
+public class Dealer extends Player {
 
 	private Deck m_deck;
 	private INewGameStrategy m_newGameRule;
 	private IHitStrategy m_hitRule;
 	private IWhoWinStrategy m_winRule;
-	private IObserver m_observer;
 
 	public Dealer(RulesFactory a_rulesFactory) {
 
@@ -63,30 +62,6 @@ public class Dealer extends Player implements IObserver {
 		Card c = m_deck.GetCard();
 		c.Show(true);
 		a_player.DealCard(c);
-	}
-
-	@Override
-	public void setSubscriber(IObserver a_observer) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void notifySub() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(int a_delay) {
-		try {
-			System.out.println("Dealing the card..");
-			Thread.sleep(a_delay);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
-		
 	}
 
 }
