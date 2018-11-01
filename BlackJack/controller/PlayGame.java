@@ -12,6 +12,7 @@ public class PlayGame implements IObserver {
 	public PlayGame(Game a_game, IView a_view) {
 		this.a_game = a_game;
 		this.a_view = a_view;
+		register(this);
 	}
 
 	public boolean Play() {
@@ -40,8 +41,12 @@ public class PlayGame implements IObserver {
 	@Override
 	public void update(int a_delay) {
 		
-		System.out.println("Dealing the card...");
 		try {
+			System.out.println("Dealing the card...\n\n");
+			a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
+			Thread.sleep(a_delay);
+			System.out.println("Dealing the card...\n\n");
+			a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
 			Thread.sleep(a_delay);
 		} catch (InterruptedException e) {
 			System.out.println("BOOM it crash");
@@ -49,6 +54,10 @@ public class PlayGame implements IObserver {
 			System.exit(-1);
 		}
 		
+	}
+	
+	public void register(IObserver a_observer) {
+		this.a_game.register(a_observer);
 	}
 
 }

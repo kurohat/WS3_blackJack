@@ -1,5 +1,7 @@
 package BlackJack.model;
 
+
+
 import BlackJack.model.rules.*;
 
 public class Dealer extends Player {
@@ -14,6 +16,7 @@ public class Dealer extends Player {
 		m_newGameRule = a_rulesFactory.GetNewGameRule();
 		m_hitRule = a_rulesFactory.GetHitRule();
 		m_winRule = a_rulesFactory.GetWinRule();
+		
 
 	}
 
@@ -63,5 +66,6 @@ public class Dealer extends Player {
 		c.Show(true);
 		a_player.DealCard(c);
 	}
+	
 
 }

@@ -50,5 +50,9 @@ public class Game {
 	public int GetPlayerScore() {
 		return m_player.CalcScore();
 	}
+	
+	public void register (IObserver a_observer) {
+		m_player.register(a_observer);
+	}
 
 }
