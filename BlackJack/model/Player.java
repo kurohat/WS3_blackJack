@@ -8,7 +8,7 @@ public class Player {
 
 	private List<Card> m_hand;
 	protected final int g_maxScore = 21;
-	protected final int g_delay = 1500;
+	protected final int g_delay = 1000;
 	ArrayList<IObserver> m_observers = new ArrayList<>();
 
 	public Player() {

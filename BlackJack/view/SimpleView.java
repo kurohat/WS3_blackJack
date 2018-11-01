@@ -18,10 +18,10 @@ public class SimpleView implements IView {
 			System.out.print(choices.ordinal() + ": " + choices + " | ");
 		}
 
-		Scanner scanner = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		System.out.println("");
 
-		int choice = scanner.nextInt();
+		int choice = sc.nextInt();
 		return Action.values()[choice];
 	}
 
@@ -60,24 +60,4 @@ public class SimpleView implements IView {
 		System.out.println("-----------------------------------" + "\nDealing the card...\n\n");
 	}
 
-	@Override
-	public boolean Play(int input) {
-		return input == 'p';
-	}
-
-	@Override
-	public boolean Hit(int input) {
-		return input == 'h';
-
-	}
-
-	@Override
-	public boolean Stand(int input) {
-		return input == 's';
-	}
-
-	@Override
-	public boolean Quit(int input) {
-		return input == 'q';
-	}
 }
