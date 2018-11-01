@@ -6,33 +6,33 @@ import BlackJack.model.IObserver;
 
 public class PlayGame implements IObserver {
 
-	private Game a_game;
-	private IView a_view;
+	private Game m_game;
+	private IView m_view;
 
 	public PlayGame(Game a_game, IView a_view) {
-		this.a_game = a_game;
-		this.a_view = a_view;
+		m_game = a_game;
+		m_view = a_view;
 		register(this);
 	}
 
 	public boolean Play() {
-		a_view.DisplayWelcomeMessage();
-		a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
-		a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
+		m_view.DisplayWelcomeMessage();
+		m_view.DisplayDealerHand(m_game.GetDealerHand(), m_game.GetDealerScore());
+		m_view.DisplayPlayerHand(m_game.GetPlayerHand(), m_game.GetPlayerScore());
 
-		if (a_game.IsGameOver()) {
-			a_view.DisplayGameOver(a_game.IsDealerWinner());
+		if (m_game.IsGameOver()) {
+			m_view.DisplayGameOver(m_game.IsDealerWinner());
 		}
 
-		int input = a_view.GetInput();
+		int input = m_view.GetInput();
 
-		if (a_view.Play(input)) {
-			a_game.NewGame();
-		} else if (a_view.Hit(input)) {
-			a_game.Hit();
-		} else if (a_view.Stand(input)) {
-			a_game.Stand();
-		} else if (a_view.Quit(input)) {
+		if (m_view.Play(input)) {
+			m_game.NewGame();
+		} else if (m_view.Hit(input)) {
+			m_game.Hit();
+		} else if (m_view.Stand(input)) {
+			m_game.Stand();
+		} else if (m_view.Quit(input)) {
 			return false; // exit the the loop
 		}
 		return true; // return true if player didn't press 'q'
@@ -40,24 +40,24 @@ public class PlayGame implements IObserver {
 
 	@Override
 	public void update(int a_delay) {
-		
+
 		try {
-			System.out.println("Dealing the card...\n\n");
-			a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
+			m_view.DisplayDealingCard();
 			Thread.sleep(a_delay);
-			System.out.println("Dealing the card...\n\n");
-			a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
+			m_view.DisplayDealerHand(m_game.GetDealerHand(), m_game.GetDealerScore());
+			m_view.DisplayDealingCard();
 			Thread.sleep(a_delay);
+			m_view.DisplayPlayerHand(m_game.GetPlayerHand(), m_game.GetPlayerScore());
 		} catch (InterruptedException e) {
 			System.out.println("BOOM it crash");
 			e.printStackTrace();
 			System.exit(-1);
 		}
-		
+
 	}
-	
+
 	public void register(IObserver a_observer) {
-		this.a_game.register(a_observer);
+		this.m_game.register(a_observer);
 	}
 
 }

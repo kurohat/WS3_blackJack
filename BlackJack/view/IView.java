@@ -12,7 +12,9 @@ public interface IView {
 	void DisplayDealerHand(Iterable<BlackJack.model.Card> a_hand, int a_score);
 
 	void DisplayGameOver(boolean a_dealerIsWinner);
-
+	
+	void DisplayDealingCard();
+	
 	boolean Play(int input);
 
 	boolean Hit(int input);
@@ -20,4 +22,5 @@ public interface IView {
 	boolean Stand(int input);
 
 	boolean Quit(int input);
+	
 }

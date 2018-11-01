@@ -32,11 +32,10 @@ public class Player {
 
 	public void ShowHand() {
 		for (Card c : m_hand) {
-			if(c.GetValue()==Card.Value.Hidden){
-			c.Show(true);
-			notifyObserver();
+			if (c.GetValue() == Card.Value.Hidden) {
+				c.Show(true);
 			}
-			
+
 		}
 	}
 
@@ -70,11 +69,11 @@ public class Player {
 	public void register(IObserver a_observer) {
 		m_observers.add(a_observer);
 	}
-	
+
 	public void notifyObserver() {
-		for(IObserver a_observer: m_observers) {
+		for (IObserver a_observer : m_observers) {
 			a_observer.update(g_delay);
 		}
-		
+
 	}
 }
