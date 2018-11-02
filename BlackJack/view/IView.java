@@ -3,7 +3,7 @@ package BlackJack.view;
 public interface IView {
 	void DisplayWelcomeMessage();
 
-	Action GetInput();
+	void GetInput();
 
 	void DisplayCard(BlackJack.model.Card a_card);
 

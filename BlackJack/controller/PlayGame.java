@@ -1,6 +1,10 @@
 package BlackJack.controller;
 
 import BlackJack.view.*;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import BlackJack.model.Game;
 import BlackJack.model.IObserver;
 
@@ -17,6 +21,7 @@ public class PlayGame implements IObserver {
 
 	public boolean Play() {
 		m_view.DisplayWelcomeMessage();
+
 		m_view.DisplayDealerHand(m_game.GetDealerHand(), m_game.GetDealerScore());
 		m_view.DisplayPlayerHand(m_game.GetPlayerHand(), m_game.GetPlayerScore());
 
@@ -24,24 +29,40 @@ public class PlayGame implements IObserver {
 			m_view.DisplayGameOver(m_game.IsDealerWinner());
 		}
 
-		Action input = m_view.GetInput();
+		m_view.GetInput();
+		Scanner sc = new Scanner(System.in);
+		try {
 
-		switch (input) {
-		case Play:
-			m_game.NewGame();
-			break;
-		case Hit:
-			m_game.Hit();
-			break;
-		case Stand:
-			m_game.Stand();
-			break;
-		case Quit:
-			return false;
+			System.out.println("");
+
+			int choice = sc.nextInt();
+			Action input = Action.values()[choice];
+			switch (input) {
+			case Play:
+				m_game.NewGame();
+				break;
+			case Hit:
+				m_game.Hit();
+				break;
+			case Stand:
+				m_game.Stand();
+				break;
+			case Quit:
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println("Warning: invalid option");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e1) {
+				System.out.println("BOOM it crash");
+				e1.printStackTrace();
+				System.exit(0);
+			}
 		}
+
 		return true;
 	}
-
 	@Override
 	public void update(int a_delay) {
 
@@ -52,6 +73,7 @@ public class PlayGame implements IObserver {
 			m_view.DisplayDealingCard();
 			Thread.sleep(a_delay);
 			m_view.DisplayPlayerHand(m_game.GetPlayerHand(), m_game.GetPlayerScore());
+			Thread.sleep(a_delay);
 		} catch (InterruptedException e) {
 			System.out.println("BOOM it crash");
 			e.printStackTrace();
