@@ -13,16 +13,11 @@ public class SimpleView implements IView {
 		System.out.println("LET PLAY BLACKJACK, GO HARD OR GO HOME YOOOO!!");
 	}
 
-	public Action GetInput() {
+	public void GetInput() {
 		for (Action choices : EnumSet.allOf(Action.class)) {
 			System.out.print(choices.ordinal() + ": " + choices + " | ");
 		}
 
-		Scanner sc = new Scanner(System.in);
-		System.out.println("");
-
-		int choice = sc.nextInt();
-		return Action.values()[choice];
 	}
 
 	public void DisplayCard(BlackJack.model.Card a_card) {
