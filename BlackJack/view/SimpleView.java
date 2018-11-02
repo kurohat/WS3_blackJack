@@ -10,7 +10,7 @@ public class SimpleView implements IView {
 			System.out.print("\n");
 		}
 		;
-		System.out.println("LET PLAY BLACK JACK, GO HARD OR GO HOME YOOOO!!");
+		System.out.println("LET PLAY BLACKJACK, GO HARD OR GO HOME YOOOO!!");
 	}
 
 	public Action GetInput() {
@@ -48,12 +48,7 @@ public class SimpleView implements IView {
 
 	public void DisplayGameOver(boolean a_dealerIsWinner) {
 		System.out.println("GameOver: ");
-		if (a_dealerIsWinner) {
-			System.out.println("Dealer Won!");
-		} else {
-			System.out.println("You Won!");
-		}
-
+		System.out.println((a_dealerIsWinner ? "Dealer won!" : "You won!"));
 	}
 
 	public void DisplayDealingCard() {
