@@ -2,7 +2,6 @@ package BlackJack.controller;
 
 import BlackJack.view.*;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import BlackJack.model.Game;

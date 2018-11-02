@@ -1,7 +1,6 @@
 package BlackJack.view;
 
 import java.util.EnumSet;
-import java.util.Scanner;
 
 public class SimpleView implements IView {
 
