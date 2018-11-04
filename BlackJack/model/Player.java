@@ -30,7 +30,7 @@ public class Player {
 	}
 
 	public void ShowHand() {
-		for (Card c : m_hand) {
+		for (Card c : GetHand()) {
 			if (c.GetValue() == Card.Value.Hidden) {
 				c.Show(true);
 			}
