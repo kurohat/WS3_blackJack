@@ -2,3 +2,6 @@
 /SimpleView.class
 /SwedishView.class
 /Action.class
+/IView$Acttion.class
+/IView$Action.class
+/SimpleView$Action.class

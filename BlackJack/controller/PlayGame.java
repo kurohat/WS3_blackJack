@@ -1,8 +1,10 @@
 package BlackJack.controller;
 
 import BlackJack.view.*;
+import BlackJack.view.IView.Action;
 
 import java.util.Scanner;
+
 
 import BlackJack.model.Game;
 import BlackJack.model.IObserver;
@@ -33,7 +35,6 @@ public class PlayGame implements IObserver {
 		try {
 
 			System.out.println("");
-
 			int choice = sc.nextInt();
 			Action input = Action.values()[choice];
 			switch (input) {
