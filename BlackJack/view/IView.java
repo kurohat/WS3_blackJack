@@ -14,5 +14,9 @@ public interface IView {
 	void DisplayGameOver(boolean a_dealerIsWinner);
 
 	void DisplayDealingCard();
+	
+	enum Action {
+		Quit, Play, Hit, Stand
+	}
 
 }

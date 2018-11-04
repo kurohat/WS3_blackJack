@@ -1,6 +1,7 @@
 package BlackJack.controller;
 
 import BlackJack.view.*;
+import BlackJack.view.IView.Action;
 
 import java.util.Scanner;
 
@@ -18,6 +19,7 @@ public class PlayGame implements IObserver {
 		register(this);
 	}
 
+	@SuppressWarnings("resource")
 	public boolean Play() {
 		m_view.DisplayWelcomeMessage();
 
@@ -31,9 +33,7 @@ public class PlayGame implements IObserver {
 		m_view.GetInput();
 		Scanner sc = new Scanner(System.in);
 		try {
-
 			System.out.println("");
-
 			int choice = sc.nextInt();
 			Action input = Action.values()[choice];
 			switch (input) {
@@ -59,9 +59,10 @@ public class PlayGame implements IObserver {
 				System.exit(0);
 			}
 		}
-
+		
 		return true;
 	}
+
 	@Override
 	public void update(int a_delay) {
 
